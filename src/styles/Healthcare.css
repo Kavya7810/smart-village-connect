@@ -1,0 +1,222 @@
+/* General Container */
+.healthcare-container {
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+/* Headings */
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Appointment and Service Cards */
+.appointment-card,
+.service-card {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Consultation Heading */
+.consultation-heading {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.consultation-heading::before {
+  content: "📅";
+  margin-right: 8px;
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Input Fields */
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  outline: none;
+  font-size: 16px;
+  background: #fff;
+  color: #000;
+  box-sizing: border-box;
+  margin-top: 5px;
+  transition: border 0.3s ease;
+}
+
+/* Input Hover Effect */
+.input-group input:hover,
+.input-group select:hover {
+  border: 2px solid #00c3ff;
+}
+
+/* Fixing different field heights */
+.input-group select {
+  height: 48px;
+}
+
+/* Icons inside Input Fields */
+.icon {
+  position: absolute;
+  right: 15px;
+  color: #888;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Error Message Styling */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Buttons */
+.book-btn,
+.reminder-btn,
+.video-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Book Appointment Button */
+.book-btn {
+  background: #00c3ff;
+  color: #000;
+  margin-top: 20px;
+}
+
+.book-btn:hover {
+  background: #0097d6;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Medicine Reminder Button */
+.reminder-btn {
+  background: #ffcc00;
+  color: #000;
+}
+
+.reminder-btn:hover {
+  background: #e6b800;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Video Consultation Button */
+.video-btn {
+  background: #28a745;
+  color: #fff;
+}
+
+.video-btn:hover {
+  background: #218838;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure uniform spacing for all input fields */
+.input-group input,
+.input-group select {
+  margin-bottom: 15px !important;
+}
+
+/* Medicine Reminder List */
+.reminder-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.reminder-item {
+  background: #333;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Ensure proper gap between sections */
+.appointment-card {
+  margin-bottom: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .healthcare-container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .input-group input,
+  .input-group select {
+    font-size: 14px;
+  }
+
+  .book-btn,
+  .reminder-btn,
+  .video-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,148 @@
+/* General Styles */
+body {
+  background-color: #121212; /* Dark theme background */
+  color: #ffffff; /* Light text */
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #111; /* Dark navbar */
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color: #ffffff !important;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navbar-brand img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* Improve Navbar Logo Visibility */
+.navbar-brand span {
+  color: #f0a500; /* Bright yellow-orange */
+  font-weight: 700;
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+  font-size: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f0a500 !important;
+}
+
+/* Hero Section (Carousel) */
+.carousel-item img {
+  width: 100%;
+  height: 85vh;
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+/* Improve Carousel Caption */
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 70%;
+}
+
+.carousel-caption h5 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.carousel-caption p {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+/* Login & Register Buttons */
+.navbar-nav .nav-item:last-child {
+  margin-left: 20px;
+}
+
+.navbar-nav .nav-link.button {
+  background-color: #f0a500;
+  color: #121212 !important;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.navbar-nav .nav-link.button:hover {
+  background-color: #ffbb33;
+  color: #000 !important;
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  padding: 20px;
+  text-align: center;
+  color: #ccc;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+/* Footer Copyright */
+.footer p {
+  margin: 0;
+  color: #aaa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-brand {
+      font-size: 1.2rem;
+  }
+
+  .carousel-item img {
+      height: 70vh;
+  }
+
+  .carousel-caption {
+      width: 90%;
+  }
+
+  .carousel-caption h5 {
+      font-size: 1.5rem;
+  }
+
+  .carousel-caption p {
+      font-size: 0.9rem;
+  }
+}
+
+.main-container {
+  padding: 20px;
+  min-height: 90vh;
+  background-color: #f8f9fa;
+}
+
+
+
+
+
+

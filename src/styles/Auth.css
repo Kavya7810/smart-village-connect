@@ -1,0 +1,97 @@
+/* Full-page background */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('../assets/Login2.jpg') no-repeat center center/cover;
+  position: relative;
+}
+
+/* Form card */
+.auth-card {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.3);
+  width: 380px;
+  z-index: 2;
+}
+
+.auth-card h2 {
+  color: #00ffff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Input fields */
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #1e1e1e;
+  color: white;
+  font-size: 1rem;
+}
+
+/* Register button */
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  background-color: #00cc44;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.auth-card button:hover {
+  background-color: #009933;
+}
+
+/* Login link */
+.auth-card p {
+  margin-top: 10px;
+}
+
+.auth-card a {
+  color: #facc15;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Success and error messages */
+.success-message {
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.error-message {
+  background-color: #dc3545;
+  color: white;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Placeholder text color */
+.auth-card input::placeholder {
+  color: rgba(255, 255, 255); /* Light gray */
+  opacity: 1;
+}
+
+
+
+
+
