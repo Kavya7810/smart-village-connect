@@ -1,0 +1,28 @@
+
+.admin-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .news-form input,
+  .news-form textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .news-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+  
+  .news-item img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+  

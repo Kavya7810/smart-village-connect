@@ -6,7 +6,14 @@ import "../styles/Auth.css";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "", // Initially empty
+  });
+  
+  
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
@@ -21,19 +28,31 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission (Dummy frontend validation)
+  // Handle form submission (Send data to backend)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess(false);
+    console.log("Sending Data:", formData); 
+    try {
+      const response = await fetch("http://localhost:8080/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    // Dummy success condition (Remove when backend is connected)
-    if (formData.name && formData.email.includes("@") && formData.password.length >= 6) {
-      setSuccess(true);
-      playSound(successSound);
-      setTimeout(() => navigate("/login"), 2000);
-    } else {
-      setError("Invalid input. Make sure all fields are correctly filled.");
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess(true);
+        playSound(successSound);
+        setTimeout(() => navigate("/login"), 2000);
+      } else {
+        setError(data.message || "Registration failed");
+        playSound(errorSound);
+      }
+    } catch (err) {
+      setError("Server error. Please try again later.");
       playSound(errorSound);
     }
   };
@@ -46,25 +65,50 @@ const Register = () => {
 
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>
-          <input type="text" name="name" placeholder="Enter your name" value={formData.name} onChange={handleChange} required />
-          <input type="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
-          <input type="password" name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} required />
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        <select name="role" value={formData.role} onChange={handleChange} required>
+          <option value="" disabled>
+            Select Role
+          </option>
+          <option value="Doctor">Doctor</option>
+          <option value="Farmer">Farmer</option>
+          <option value="Villager">Villager</option>
+          <option value="Admin">Admin</option>
+
+        </select>
+
+
           <button type="submit">Register</button>
         </form>
-        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>
+          Already have an account? <a href="/login">Login</a>
+        </p>
       </div>
     </div>
   );
 };
 
 export default Register;
-
-
-
-
-
-
-
-
-
-

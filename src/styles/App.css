@@ -1,10 +1,25 @@
 /* General Styles */
-body {
+html, body {
   background-color: #121212; /* Dark theme background */
   color: #ffffff; /* Light text */
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+/* Wrapper for sticky footer */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content area */
+.main-container {
+  flex: 1;
+  padding: 20px;
+  background-color: #121212; /* Match the dark theme */
 }
 
 /* Navbar Styling */
@@ -102,11 +117,9 @@ body {
   padding: 20px;
   text-align: center;
   color: #ccc;
-  margin-top: 20px;
   font-size: 0.9rem;
 }
 
-/* Footer Copyright */
 .footer p {
   margin: 0;
   color: #aaa;
@@ -115,34 +128,33 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar-brand {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
   }
 
   .carousel-item img {
-      height: 70vh;
+    height: 70vh;
   }
 
   .carousel-caption {
-      width: 90%;
+    width: 90%;
   }
 
   .carousel-caption h5 {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 
   .carousel-caption p {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 }
 
-.main-container {
-  padding: 20px;
-  min-height: 90vh;
-  background-color: #f8f9fa;
+/* NEW: Fix footer position for app layout */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-
-
-
-
-
+.content {
+  flex: 1;
+}

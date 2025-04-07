@@ -7,6 +7,7 @@ import errorSound from "../assets/sounds/error.mp3";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(null);
   const navigate = useNavigate();
@@ -22,20 +23,30 @@ const Login = () => {
     setIsSuccess(null);
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("http://localhost:8080/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, role }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("email", data.email);
+
         setMessage("✅ Login Successful!");
         setIsSuccess(true);
         playSound(successSound);
-        setTimeout(() => navigate("/dashboard"), 2000); // Redirect after 2 seconds
+
+        // Redirect based on role
+        setTimeout(() => {
+          if (data.role === "Doctor") navigate("/doctor");
+          else if (data.role === "Farmer") navigate("/farmer");
+          else if (data.role === "Admin") navigate("/admin");
+          else navigate("/services"); // Default fallback
+        }, 2000);
       } else {
         setMessage(data.message || "❌ Invalid Credentials!");
         setIsSuccess(false);
@@ -72,6 +83,20 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <select
+            name="role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            required
+          >
+            <option value="" disabled>
+              Select Role
+            </option>
+            <option value="Doctor">Doctor</option>
+            <option value="Farmer">Farmer</option>
+            <option value="Villager">Villager</option>
+            <option value="Admin">Admin</option>
+          </select>
           <button type="submit">Login</button>
         </form>
         <p>
@@ -83,5 +108,3 @@ const Login = () => {
 };
 
 export default Login;
-
-

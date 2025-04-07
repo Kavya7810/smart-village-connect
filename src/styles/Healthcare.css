@@ -199,24 +199,27 @@ p {
     padding: 10px;
   }
 }
+/* Background Image for Healthcare Module */
+
+/* Healthcare.css */
 
 
+/* Apply background to the entire page or container */
 
+.healthcare-wrapper {
+  background-image: url('../assets/H.jpg'); /* Update this path as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto; /* In case content overflows */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  position: relative;
+  z-index: 1;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Optional: Add a dark overlay for better contrast */

@@ -10,14 +10,13 @@ const Healthcare = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [errors, setErrors] = useState({});
-  const [reminders, setReminders] = useState([]); 
+  const [reminders, setReminders] = useState([]);
   const [medicineName, setMedicineName] = useState("");
   const [medicineTime, setMedicineTime] = useState("");
 
   const doctorsList = ["Dr. Smith", "Dr. Patel", "Dr. Johnson", "Dr. Brown"];
 
   useEffect(() => {
-    // Request notification permission when the component mounts
     if ("Notification" in window) {
       Notification.requestPermission();
     }
@@ -27,7 +26,6 @@ const Healthcare = () => {
         prevReminders.map((reminder) => {
           const remainingTime = getTimeRemaining(reminder.time);
 
-          // If time is up, send notification
           if (remainingTime === "Time up!") {
             showReminderNotification(reminder.name);
             toast.info(`It's time for ${reminder.name}!`);
@@ -36,10 +34,10 @@ const Healthcare = () => {
           return { ...reminder, remainingTime };
         })
       );
-    }, 60000); // Check every minute
+    }, 60000);
 
     return () => clearInterval(interval);
-  }, [reminders]);
+  }, []);
 
   const validateInputs = () => {
     let newErrors = {};
@@ -112,119 +110,112 @@ const Healthcare = () => {
   };
 
   return (
-    <div className="healthcare-container">
-      <ToastContainer position="top-right" autoClose={3000} />
+    <div className="healthcare-wrapper">
+      <div className="healthcare-container">
+        <ToastContainer position="top-right" autoClose={3000} />
 
-      <div className="appointment-card">
-        <h3 className="consultation-heading">BOOK AN ONLINE CONSULTATION</h3>
+        <div className="appointment-card">
+          <h3 className="consultation-heading">BOOK AN ONLINE CONSULTATION</h3>
 
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Enter Your Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="input-field"
-          />
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Enter Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="input-field"
+            />
+            {errors.name && <span className="error">{errors.name}</span>}
+          </div>
+
+          <div className="input-group">
+            <select value={doctor} onChange={(e) => setDoctor(e.target.value)} className="input-field">
+              <option value="">Select a Doctor</option>
+              {doctorsList.map((doc, index) => (
+                <option key={index} value={doc}>{doc}</option>
+              ))}
+            </select>
+            <FaUserMd className="icon" />
+            {errors.doctor && <span className="error">{errors.doctor}</span>}
+          </div>
+
+          <div className="input-group">
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="input-field"
+            />
+            <FaCalendarAlt className="icon" />
+            {errors.date && <span className="error">{errors.date}</span>}
+          </div>
+
+          <div className="input-group">
+            <input
+              type="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              className="input-field"
+            />
+            <FaClock className="icon" />
+            {errors.time && <span className="error">{errors.time}</span>}
+          </div>
+
+          <button className="book-btn" onClick={handleAppointment}>
+            Book Appointment
+          </button>
         </div>
-        {errors.name && <span className="error">{errors.name}</span>}
 
-        <div className="input-group">
-          <select value={doctor} onChange={(e) => setDoctor(e.target.value)} className="input-field">
-            <option value="">Select a Doctor</option>
-            {doctorsList.map((doc, index) => (
-              <option key={index} value={doc}>{doc}</option>
+        <div className="service-card medicine">
+          <h3>
+            <FaBell /> Medicine Reminders
+          </h3>
+
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Medicine Name"
+              value={medicineName}
+              onChange={(e) => setMedicineName(e.target.value)}
+              className="input-field"
+            />
+          </div>
+
+          <div className="input-group">
+            <input
+              type="time"
+              value={medicineTime}
+              onChange={(e) => setMedicineTime(e.target.value)}
+              className="input-field"
+            />
+          </div>
+
+          <button className="reminder-btn" onClick={addReminder}>
+            Add Reminder
+          </button>
+
+          <ul className="reminder-list">
+            {reminders.map((reminder, index) => (
+              <li key={index} className="reminder-item">
+                <strong>{reminder.name}</strong> at <span>{reminder.time}</span> <br />
+                <small>{getTimeRemaining(reminder.time)}</small>
+              </li>
             ))}
-          </select>
-          <FaUserMd className="icon" />
-        </div>
-        {errors.doctor && <span className="error">{errors.doctor}</span>}
-
-        <div className="input-group">
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="input-field"
-          />
-          <FaCalendarAlt className="icon" />
-        </div>
-        {errors.date && <span className="error">{errors.date}</span>}
-
-        <div className="input-group">
-          <input
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            className="input-field"
-          />
-          <FaClock className="icon" />
-        </div>
-        {errors.time && <span className="error">{errors.time}</span>}
-
-        <button className="book-btn" onClick={handleAppointment}>
-          Book Appointment
-        </button>
-      </div>
-
-      <div className="service-card medicine">
-        <h3>
-          <FaBell /> Medicine Reminders
-        </h3>
-
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Medicine Name"
-            value={medicineName}
-            onChange={(e) => setMedicineName(e.target.value)}
-            className="input-field"
-          />
+          </ul>
         </div>
 
-        <div className="input-group">
-          <input
-            type="time"
-            value={medicineTime}
-            onChange={(e) => setMedicineTime(e.target.value)}
-            className="input-field"
-          />
+        <div className="service-card telemedicine">
+          <h3>
+            <FaVideo /> Telemedicine Support
+          </h3>
+          <p>Connect with a doctor via video call.</p>
+          <button className="video-btn" onClick={startVideoCall}>
+            Join Video Call
+          </button>
         </div>
-
-        <button className="reminder-btn" onClick={addReminder}>
-          Add Reminder
-        </button>
-
-        <ul className="reminder-list">
-          {reminders.map((reminder, index) => (
-            <li key={index} className="reminder-item">
-              <strong>{reminder.name}</strong> at <span>{reminder.time}</span> <br />
-              <small>{getTimeRemaining(reminder.time)}</small>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="service-card telemedicine">
-        <h3>
-          <FaVideo /> Telemedicine Support
-        </h3>
-        <p>Connect with a doctor via video call.</p>
-        <button className="video-btn" onClick={startVideoCall}>
-          Join Video Call
-        </button>
       </div>
     </div>
   );
 };
 
 export default Healthcare;
-
-
-
-
-
-
-
-
-

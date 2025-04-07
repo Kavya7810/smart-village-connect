@@ -1,44 +1,124 @@
+/* Only this page gets the rural market background */
 .marketplace-container {
-  text-align: center;
-  padding: 20px;
-  background: #1e1e1e;
-  color: white;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-image: url('../assets/market.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #fff;
+  min-height: 100vh;
+  position: relative;
+  padding: 2rem 1rem;
 }
 
-.product-list {
+/* Dark overlay for readability */
+.marketplace-container::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: -1;
+}
+
+/* Page header */
+.marketplace-container h1 {
+  text-align: center;
+  color: #4efcff;
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.marketplace-container p {
+  text-align: center;
+  color:magenta;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+/* Product grid */
+.product-grid {
   display: flex;
-  justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
 .product-card {
-  background: #222;
-  padding: 15px;
-  border-radius: 10px;
-  width: 200px;
+  background: rgba(30, 30, 30, 0.95);
+  width: 280px;
+  padding: 1rem;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .product-card img {
   width: 100%;
-  height: 120px;  /* Set a fixed height */
-  object-fit: cover; /* Ensures the image fits nicely */
-  border-radius: 5px;
-  margin-bottom: 10px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
+.product-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1rem 0 0.3rem;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #ff4de9;
+  margin-bottom: 1rem;
+}
 
 .product-card button {
-  background: #00aaff;
-  color: white;
-  padding: 8px;
+  padding: 10px 20px;
+  background-color: #00d1b2;
+  color: black;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .product-card button:hover {
-  background: #0088cc;
+  background-color: #00b89c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 90%;
+  }
+}
+.my-orders-btn {
+  background-color: #00ffaa;
+  color: #111;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 1rem 0;
+  box-shadow: 0 0 8px #00ffaa;
+  transition: all 0.3s ease;
+}
+
+.my-orders-btn:hover {
+  background-color: #00ddaa;
+  box-shadow: 0 0 16px #00ffaa;
 }

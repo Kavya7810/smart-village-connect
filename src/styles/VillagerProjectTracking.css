@@ -1,0 +1,60 @@
+.project-tracking-container {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #0d1117; /* dark theme */
+    color: #00ffe0;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 255, 224, 0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .project-tracking-container h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #00ffe0;
+  }
+  
+  .description {
+    text-align: center;
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 30px;
+  }
+  
+  /* Project Card Styling */
+  .project-card {
+    background-color: #161b22;
+    border: 1px solid #2f363d;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 224, 0.3);
+    transform: translateY(-3px);
+  }
+  
+  .project-card h3 {
+    margin: 0 0 10px;
+    color: #ffffff;
+  }
+  
+  .project-card p {
+    margin: 6px 0;
+    color: #ccc;
+  }
+  
+  .project-card .status {
+    font-weight: bold;
+    color: #00ffae;
+  }
+  
+  .project-card .timeline {
+    font-style: italic;
+    color: #9efff9;
+  }
+  

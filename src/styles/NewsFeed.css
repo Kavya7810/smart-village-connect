@@ -1,0 +1,50 @@
+.news-feed {
+    padding: 20px;
+    max-width: 700px;
+    margin: auto;
+  }
+  
+  .news-alert {
+    background: #ffeaa7;
+    color: #2d3436;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .news-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .news-filters input {
+    flex: 1;
+    padding: 8px;
+  }
+  
+  .news-card {
+    border: 1px solid #dcdde1;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background-color: #f5f6fa;
+  }
+  
+  .news-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  
+  .reactions button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #dfe6e9;
+    cursor: pointer;
+  }
+  
