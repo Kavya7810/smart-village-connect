@@ -1,12 +1,25 @@
-# React + Vite
+# Smart Village Connect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Smart Village Connect is a platform designed to improve rural areas by providing a variety of services such as healthcare, rural marketplace, project tracking, and more. The project uses modern web technologies such as MERN stack and focuses on creating a user-friendly experience for villagers and administrators.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Healthcare services
+- Rural marketplace
+- Project tracking
+- News and updates
+- Authentication (Login/Registration)
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Frontend: React, Bootstrap, CSS
+- Backend: Node.js, Express, MongoDB
+- Database: MongoDB
+
+## Installation
+
+Clone this repository:
+
+```bash
+git clone https://github.com/momintaj-shaik-4/smart-village-connect.git
+```
