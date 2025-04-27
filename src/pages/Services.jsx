@@ -8,7 +8,7 @@ const Services = () => {
   return (
     <section className="services-page">
       <h1 className="services-title">OUR SERVICES</h1>
-      <p className="services-description">
+      <p className="services-description" id="para">
         Empowering villages with digital solutions: Healthcare, Marketplace,
         Project Tracking, and News Updates.
       </p>
@@ -24,7 +24,7 @@ const Services = () => {
         </button>
         <button
           className="service-btn"
-          onClick={() => navigate("/project-tracking")}
+          onClick={() => navigate("/villager-project-tracking")}
         >
           📊 Project Tracking
         </button>

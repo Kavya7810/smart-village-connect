@@ -1,0 +1,125 @@
+.marketplace-container {
+    padding: 80px;
+    color: #00ffff;
+    text-align: center;
+    background-image: url('../assets/market.jpg'); 
+    background-size: cover;
+    min-height: 100vh;
+  }
+  
+  .marketplace-container h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color:#ff1a1a;
+  }
+  
+  .marketplace-container p {
+    color: magenta;
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  /* Product Grid Layout */
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* This gives spacing between cards */
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Product Card Styling */
+  .product-card {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .product-card img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card h3 {
+    margin: 10px 0 5px;
+  }
+  
+  .product-card p {
+    color: violet;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card input[type="number"] {
+    width: 100%;
+    padding: 6px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+  }
+  
+  /* Button Styles */
+  .product-card button {
+    background-color: #ff4d4d;
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 5px 4px 0 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .product-card button:hover {
+    background-color: #ff1a1a;
+  }
+  
+  /* Edit/Cancel buttons layout fix */
+  .product-card > button:nth-of-type(1):not(:last-child),
+  .product-card > button:nth-of-type(2) {
+    margin-top: 10px;
+  }
+  
+  .product-card input[type="number"] {
+    width: 100%;
+    padding: 6px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.price_update{
+    color:white;
+}
+
+.popup-message {
+  position: fixed;
+  top: 20px;
+  right: -300px;
+  background-color: #333;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  z-index: 9999;
+  transition: right 0.3s ease;
+}
+
+.popup-message.visible {
+  right: 20px;
+}

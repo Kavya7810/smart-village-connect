@@ -1,28 +1,54 @@
+.admin-dashboard {
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  background-image: url('../assets/admin1.jpg'); /* make sure this path is correct */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-.admin-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .news-form input,
-  .news-form textarea {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
-  
-  .news-item {
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 10px;
-  }
-  
-  .news-item img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-  }
-  
+/* NEW OVERLAY STYLE */
+.admin-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  text-align: center;
+  /* backdrop-filter: blur(4px); smooth blurry glass effect */
+}
+
+/* BUTTON CONTAINER */
+.admin-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 2rem;
+}
+
+/* BUTTON STYLE */
+.admin-buttons button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #00b7ff;
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.admin-buttons button:hover {
+  background-color: #009bd1;
+}
+.admin-overlay p{
+  color:white
+}
+.head{
+  color:aqua;
+}

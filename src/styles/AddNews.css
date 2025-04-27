@@ -1,0 +1,199 @@
+.admin1 {
+  padding: 80px;
+  background-image: url("../assets/newsAdd.jpg");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.admin-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.news-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.news-form h3 {
+  margin: 0;
+  color: #444;
+}
+
+.news-form input[type="text"],
+.news-form textarea {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  resize: vertical;
+}
+
+.news-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.news-form button:hover {
+  background-color: #0056b3;
+}
+
+.news-list {
+  margin-top: 20px;
+}
+
+.news-list h3 {
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.news-item {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.news-item h4 {
+  margin-top: 0;
+  color: #222;
+}
+
+.news-item p {
+  margin: 10px 0;
+  color: #555;
+}
+
+.news-item small {
+  color: #888;
+}
+
+.news-item img,
+.news-item video,
+.news-item iframe {
+  display: block;
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+
+/* Popup Message */
+.popup-message {
+  position: fixed;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4fc242;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  z-index: 9999;
+  transition: top 0.5s ease;
+}
+
+.popup-message.visible {
+  top: 30px;
+}
+
+/* Reaction Buttons */
+.reaction-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.reaction-buttons button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.reaction-buttons button:hover {
+  background-color: #ddd;
+}
+
+.delete-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.delete-modal {
+  background-color: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 350px;
+}
+
+.delete-modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.delete-modal .confirm {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-modal .cancel {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.delete-btn{
+  color:red;
+}
+

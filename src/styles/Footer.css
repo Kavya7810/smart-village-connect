@@ -1,6 +1,6 @@
 footer {
   background-color: #333;
-  color: white;
+  color:white;
   text-align: center;
   padding: 10px;
   position: relative; /* Prevents fixed positioning issues */
@@ -8,4 +8,7 @@ footer {
   width: 100%;
   left: 0;
   margin-top: auto;
+}
+.para{
+  color: white;
 }

@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -16,7 +19,7 @@ import Doctor from "./pages/Doctor";
 import Admin from "./pages/Admin";
 
 // Project Tracking Pages
-import ProjectTracking from "./pages/ProjectTracking";
+import AddNews from "./pages/AddNews";
 import AdminProjectTracking from "./pages/ProjectTracking/AdminProjectTracking";
 import VillagerProjectTracking from "./pages/ProjectTracking/VillagerProjectTracking";
 
@@ -32,7 +35,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/healthcare" element={<Healthcare />} />
             <Route path="/marketplace" element={<Marketplace />} />
-            <Route path="/project-tracking" element={<ProjectTracking />} />
+            <Route path="/add-news" element={<AddNews />} />
             <Route path="/admin-project-tracking" element={<AdminProjectTracking />} />
             <Route path="/villager-project-tracking" element={<VillagerProjectTracking />} />
             <Route path="/news" element={<News />} />
@@ -44,9 +47,10 @@ function App() {
           </Routes>
         </div>
         <Footer />
+        <ToastContainer position="top-center" autoClose={3000} />
       </div>
     </Router>
   );
 }
 
-export default App; 
+export default App;

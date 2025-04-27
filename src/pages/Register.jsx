@@ -47,6 +47,11 @@ const Register = () => {
         setSuccess(true);
         playSound(successSound);
         setTimeout(() => navigate("/login"), 2000);
+
+        if (data.role === "Villager") {
+          console.log("hello"+data.name);
+          localStorage.setItem("villagerName", `${data.name || "Default name"}`);
+        }
       } else {
         setError(data.message || "Registration failed");
         playSound(errorSound);
@@ -103,7 +108,7 @@ const Register = () => {
 
           <button type="submit">Register</button>
         </form>
-        <p>
+        <p className="para">
           Already have an account? <a href="/login">Login</a>
         </p>
       </div>

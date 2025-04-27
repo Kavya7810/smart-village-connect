@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Healthcare.css";
-import { FaBell, FaVideo, FaCalendarAlt, FaClock, FaUserMd } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { FaBell, FaCalendarAlt, FaClock, FaUserMd } from "react-icons/fa";
+import axios from "axios";
 
 const Healthcare = () => {
   const [name, setName] = useState("");
@@ -28,7 +27,7 @@ const Healthcare = () => {
 
           if (remainingTime === "Time up!") {
             showReminderNotification(reminder.name);
-            toast.info(`It's time for ${reminder.name}!`);
+            showPopup(`It's time for ${reminder.name}!`);
           }
 
           return { ...reminder, remainingTime };
@@ -37,18 +36,39 @@ const Healthcare = () => {
     }, 60000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [reminders]);
+
+  const showPopup = (message) => {
+    const popup = document.createElement("div");
+    popup.className = "popup-message";
+    popup.innerText = message;
+    document.body.appendChild(popup);
+    setTimeout(() => {
+      popup.classList.add("visible");
+    }, 100);
+    setTimeout(() => {
+      popup.classList.remove("visible");
+      setTimeout(() => document.body.removeChild(popup), 500);
+    }, 3000);
+  };
 
   const validateInputs = () => {
     let newErrors = {};
-    const currentDate = new Date();
-    const selectedDate = new Date(date);
 
     if (!name.trim()) newErrors.name = "Name is required";
     if (!doctor) newErrors.doctor = "Please select a doctor";
-    if (!date) newErrors.date = "Date is required";
-    else if (selectedDate.toDateString() < currentDate.toDateString())
-      newErrors.date = "Choose a future date or today";
+    if (!date) {
+      newErrors.date = "Date is required";
+    } else {
+      const selected = new Date(date);
+      selected.setHours(0, 0, 0, 0);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (selected < today) {
+        newErrors.date = "Choose a future date or today";
+      }
+    }
     if (!time) newErrors.time = "Time is required";
 
     setErrors(newErrors);
@@ -57,25 +77,38 @@ const Healthcare = () => {
 
   const handleAppointment = () => {
     if (validateInputs()) {
-      toast.success(`Appointment booked with ${doctor} for ${name} on ${date} at ${time}`);
-      setName("");
-      setDoctor("");
-      setDate("");
-      setTime("");
-      setErrors({});
+      axios
+        .post("http://localhost:8080/appointments/book", {
+          name,
+          doctor,
+          date,
+          time,
+        })
+        .then((res) => {
+          showPopup("Appointment booked Successfully");
+          setName("");
+          setDoctor("");
+          setDate("");
+          setTime("");
+          setErrors({});
+        })
+        .catch((err) => {
+          console.error(err);
+          showPopup("Failed to book appointment");
+        });
     }
   };
 
   const addReminder = () => {
     if (!medicineName.trim() || !medicineTime) {
-      toast.error("Please enter medicine name and time");
+      showPopup("Please enter medicine name and time");
       return;
     }
     const newReminder = { name: medicineName, time: medicineTime };
     setReminders([...reminders, newReminder]);
     setMedicineName("");
     setMedicineTime("");
-    toast.success("Medicine reminder added successfully!");
+    showPopup("Medicine reminder added successfully!");
   };
 
   const getTimeRemaining = (reminderTime) => {
@@ -102,18 +135,9 @@ const Healthcare = () => {
     }
   };
 
-  const startVideoCall = () => {
-    toast.info("Redirecting to Google Meet...");
-    setTimeout(() => {
-      window.open("https://meet.google.com/", "_blank");
-    }, 2000);
-  };
-
   return (
     <div className="healthcare-wrapper">
       <div className="healthcare-container">
-        <ToastContainer position="top-right" autoClose={3000} />
-
         <div className="appointment-card">
           <h3 className="consultation-heading">BOOK AN ONLINE CONSULTATION</h3>
 
@@ -129,10 +153,16 @@ const Healthcare = () => {
           </div>
 
           <div className="input-group">
-            <select value={doctor} onChange={(e) => setDoctor(e.target.value)} className="input-field">
+            <select
+              value={doctor}
+              onChange={(e) => setDoctor(e.target.value)}
+              className="input-field"
+            >
               <option value="">Select a Doctor</option>
               {doctorsList.map((doc, index) => (
-                <option key={index} value={doc}>{doc}</option>
+                <option key={index} value={doc}>
+                  {doc}
+                </option>
               ))}
             </select>
             <FaUserMd className="icon" />
@@ -202,16 +232,6 @@ const Healthcare = () => {
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="service-card telemedicine">
-          <h3>
-            <FaVideo /> Telemedicine Support
-          </h3>
-          <p>Connect with a doctor via video call.</p>
-          <button className="video-btn" onClick={startVideoCall}>
-            Join Video Call
-          </button>
         </div>
       </div>
     </div>

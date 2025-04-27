@@ -35,17 +35,22 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
         localStorage.setItem("email", data.email);
+        console.log("Login response:", data.role);
+
+        if (data.role === "Doctor") {
+          console.log(data.name);
+          localStorage.setItem("doctorName", `${data.name || "Smith"}`);
+        }
 
         setMessage("✅ Login Successful!");
         setIsSuccess(true);
         playSound(successSound);
 
-        // Redirect based on role
         setTimeout(() => {
           if (data.role === "Doctor") navigate("/doctor");
           else if (data.role === "Farmer") navigate("/farmer");
           else if (data.role === "Admin") navigate("/admin");
-          else navigate("/services"); // Default fallback
+          else navigate("/services");
         }, 2000);
       } else {
         setMessage(data.message || "❌ Invalid Credentials!");
@@ -99,7 +104,7 @@ const Login = () => {
           </select>
           <button type="submit">Login</button>
         </form>
-        <p>
+        <p className="para">
           Don't have an account? <Link to="/register">Register</Link>
         </p>
       </div>

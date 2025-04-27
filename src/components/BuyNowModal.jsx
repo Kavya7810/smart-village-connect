@@ -13,7 +13,7 @@ const BuyNowModal = ({ product, onClose, onConfirm }) => {
         <p>Price: ₹{product.price}</p>
 
         <label>Select Payment Method:</label>
-        <select>
+        <select className="Select">
           <option>UPI</option>
           <option>Cash on Delivery</option>
           <option>PhonePe</option>

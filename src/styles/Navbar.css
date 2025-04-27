@@ -1,8 +1,14 @@
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px; /* Fixed height for consistent layout */
+  z-index: 999;
   display: flex;
-  justify-content: space-between; /* Ensures logo and nav-links are balanced */
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0 2rem; /* Removed vertical padding to avoid extra height */
   background-color: #222;
   color: white;
 }
@@ -38,32 +44,25 @@
   display: inline;
 }
 
-/* Navbar link color - Always Aqua */
 .nav-links a {
-  color: aqua !important; /* Ensures it's always aqua */
+  color: aqua !important;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
   padding: 8px 12px;
 }
 
-/* Hover effect */
 .nav-links a:hover {
-  color: #00ffff; /* Slightly brighter aqua */
+  color: #00ffff;
   text-decoration: underline;
   transform: scale(1.05);
 }
 
-/* Highlight Register Link */
 .register-link {
   color: #facc15;
   font-weight: bold;
 }
 
 .register-link:hover {
-  color: #ffcc00;
+  color: #ffcc00;
 }
-
-
-
-

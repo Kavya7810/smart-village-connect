@@ -2,9 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
 const RegisterModel = require('./models/Register');
 const LoginRoute = require("./models/Login");
 const newsRoutes = require("./news");
+const appointmentRoutes = require("./routes/appointments");
+const productRoutes = require("./routes/products");
+const orderRoutes = require("./routes/orders"); // 🆕 Add this
+const projectRoutes = require("./routes/projects");
 const app = express();
 const port = 8080;
 
@@ -33,8 +38,14 @@ app.post("/register", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
 app.use("/login", LoginRoute);
 app.use("/news", newsRoutes);
+app.use("/appointments/book", appointmentRoutes);
+app.use("/products", productRoutes);
+app.use("/orders", orderRoutes);
+app.use("/projects", projectRoutes);
+
 app.listen(port, () => {
-  console.log(`🚀 Server running on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });

@@ -1,8 +1,17 @@
+.tracking {
+  padding: 90px;
+  background-image: url('../assets/Tracking2.jpg'); /* image from public/assets */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* ensures it covers full view */
+}
+
 .project-tracking-container {
     padding: 40px 20px;
     max-width: 900px;
     margin: 0 auto;
-    background-color: #0d1117; /* dark theme */
+    background-color:black; /* dark theme */
     color: #00ffe0;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 255, 224, 0.2);
@@ -25,13 +34,15 @@
   
   /* Project Card Styling */
   .project-card {
-    background-color: #161b22;
+    background-color: rgba(41, 231, 15, 0.08); /* subtle neon-glass effect */
     border: 1px solid #2f363d;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     transition: all 0.3s ease;
+    backdrop-filter: blur(4px); /* optional: gives glass effect */
   }
+  
   
   .project-card:hover {
     box-shadow: 0 0 10px rgba(0, 255, 224, 0.3);

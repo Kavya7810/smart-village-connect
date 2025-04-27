@@ -11,12 +11,18 @@ router.post('/', async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // ✅ Return email and role
-    res.json({
+    // ✅ Return name if Doctor
+    const responseData = {
       message: "Login successful",
       email: user.email,
       role: user.role
-    });
+    };
+
+    if (user.role === "Doctor") {
+      responseData.name = user.name || "Unknown"; // send doctor's name
+    }
+
+    res.json(responseData);
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Server error" });

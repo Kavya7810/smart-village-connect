@@ -1,10 +1,13 @@
 /* General Container */
+.healthcare-wrapper{
+  height: calc(100vh - 70px);
+}
 .healthcare-container {
   max-width: 500px;
   margin: auto;
   text-align: center;
   color: #fff;
-  padding: 20px;
+  padding: 30px;
 }
 
 /* Headings */
@@ -26,7 +29,6 @@ p {
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Consultation Heading */
@@ -71,13 +73,19 @@ p {
   color: #000;
   box-sizing: border-box;
   margin-top: 5px;
+  margin-bottom: 15px !important;
   transition: border 0.3s ease;
+  box-shadow: none !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 /* Input Hover Effect */
 .input-group input:hover,
 .input-group select:hover {
   border: 2px solid #00c3ff;
+  box-shadow: none !important;
 }
 
 /* Fixing different field heights */
@@ -85,13 +93,21 @@ p {
   height: 48px;
 }
 
-/* Icons inside Input Fields */
-.icon {
+/* Fix misalignment in select doctor input */
+.input-group select.input-field {
+  padding-right: 40px;
+}
+
+/* Icon inside Input Fields */
+.input-group .icon {
   position: absolute;
-  right: 15px;
-  color: #888;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
+  color: #888;
+  box-shadow: none !important;
+  background: transparent !important;
+  pointer-events: none;
 }
 
 /* Error Message Styling */
@@ -154,13 +170,7 @@ p {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Ensure uniform spacing for all input fields */
-.input-group input,
-.input-group select {
-  margin-bottom: 15px !important;
-}
-
-/* Medicine Reminder List */
+/* Reminder List */
 .reminder-list {
   list-style: none;
   padding: 0;
@@ -175,7 +185,7 @@ p {
   font-size: 14px;
 }
 
-/* Ensure proper gap between sections */
+/* Proper gap between sections */
 .appointment-card {
   margin-bottom: 30px;
 }
@@ -199,21 +209,16 @@ p {
     padding: 10px;
   }
 }
-/* Background Image for Healthcare Module */
 
-/* Healthcare.css */
-
-
-/* Apply background to the entire page or container */
-
+/* Background Wrapper */
 .healthcare-wrapper {
-  background-image: url('../assets/H.jpg'); /* Update this path as needed */
+  background-image: url('../assets/heart2.jpg'); /* Update path as needed */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
-  overflow-y: auto; /* In case content overflows */
+  overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,4 +227,64 @@ p {
   z-index: 1;
 }
 
-/* Optional: Add a dark overlay for better contrast */
+/* Hard Reset for Default Input/Select/Textarea */
+input,
+select,
+textarea,
+button {
+  box-shadow: none !important;
+  background: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 0;
+}
+
+/* Autofill Removal for Chrome/Safari */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important; /* or use your background color */
+  box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  caret-color: #000000 !important;
+  border: 2px solid transparent !important;
+  transition: background-color 9999s ease-out, color 9999s ease-out;
+  animation: autofill-fix 0s forwards;
+}
+
+/* Force autofill to inherit styles again */
+@keyframes autofill-fix {
+  100% {
+    color: #000;
+    background: transparent;
+  }
+}
+
+/* Force toast to appear above navbar */
+.Toastify__toast-container {
+  z-index: 9999 !important;
+  position: fixed !important;
+  top: 0px !important;
+}
+
+.popup-message {
+  position: fixed;
+  top: 20px;
+  right: -300px;
+  background-color: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 9999;
+  transition: right 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.popup-message.visible {
+  right: 20px;
+  opacity: 1;
+}
+

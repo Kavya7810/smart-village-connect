@@ -1,76 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Marketplace.css';
-import AddProduct from '../pages/AddProduct';
 import BuyNowModal from '../components/BuyNowModal';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-// Get previously added products
-const savedProducts = JSON.parse(localStorage.getItem('newProducts')) || [];
-
-const defaultProducts = [
-  { name: 'rice', price: 250, image: 'src/assets/rice.jpg' },
-  { name: 'tomato', price: 500, image: 'src/assets/tomato.jpg' },
-  { name: 'wheat', price: 150, image: 'src/assets/wheat.jpg' },
-];
-
-const initialProducts = [...defaultProducts, ...savedProducts];
+import axios from 'axios';
 
 const Marketplace = () => {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const addProduct = (newProduct) => {
-    const updatedProducts = [...products, newProduct];
-    setProducts(updatedProducts);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get('http://localhost:8080/products');
+        setProducts(res.data);
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+        showPopup('❌ Failed to load products');
+      }
+    };
 
-    const addedOnly = updatedProducts.slice(defaultProducts.length);
-    localStorage.setItem('newProducts', JSON.stringify(addedOnly));
+    fetchProducts();
+
+    if ("Notification" in window) {
+      Notification.requestPermission();
+    }
+  }, []);
+
+  const showPopup = (message) => {
+    const popup = document.createElement("div");
+    popup.className = "popup-message";
+    popup.innerText = message;
+    document.body.appendChild(popup);
+    setTimeout(() => {
+      popup.classList.add("visible");
+    }, 100);
+    setTimeout(() => {
+      popup.classList.remove("visible");
+      setTimeout(() => document.body.removeChild(popup), 500);
+    }, 3000);
   };
 
-  const openModal = (product, index) => {
+  const openModal = (product) => {
     setSelectedProduct(product);
-    setSelectedIndex(index);
   };
 
-  const confirmPurchase = () => {
-    const updated = products.filter((_, i) => i !== selectedIndex);
-    setProducts(updated);
-  
-    const newSaved = updated.filter(
-      p => !defaultProducts.some(dp => dp.name === p.name && dp.price === p.price)
-    );
-    localStorage.setItem('newProducts', JSON.stringify(newSaved));
-  
-    // Add to order history
-    const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
-    orderHistory.push(selectedProduct);
-    localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
-  
+  const confirmPurchase = async () => {
+    const email = localStorage.getItem("email");
+    if (!email) {
+      showPopup("⚠️ Email not found. Please login again.");
+      return;
+    }
+
+    try {
+      const res = await axios.get(`http://localhost:8080/orders/villager?email=${email}`);
+      const villagerName = res.data.name;
+
+      await axios.post("http://localhost:8080/orders", {
+        villagerName,
+        productName: selectedProduct.name,
+        price: selectedProduct.price,
+        paymentType: "Cash",
+      });
+
+      const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+      orderHistory.push(selectedProduct);
+      localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+
+      showPopup('✅ Order placed successfully!');
+    } catch (error) {
+      console.error("Order saving error:", error);
+      showPopup("❌ Failed to place order");
+    }
+
     setSelectedProduct(null);
-    setSelectedIndex(null);
-  
-    toast.success('✅ Order placed successfully!');
   };
-  
 
   return (
     <div className="marketplace-container">
-      <h1>MARKETPLACE</h1>
-      <p>Support local businesses by exploring rural products.</p>
-
-      <AddProduct onAdd={addProduct} />
+      <h1 className="para1">MARKETPLACE</h1>
+      <h1 className="para2">Support local businesses by exploring rural products.</h1>
 
       <div className="product-grid">
-        {products.map((item, idx) => (
-          <div className="product-card" key={idx}>
-            <img src={item.image} alt={item.name} />
-            <h3>{item.name}</h3>
-            <p>₹{item.price}</p>
-            <button onClick={() => openModal(item, idx)}>Buy Now</button>
-          </div>
-        ))}
+        {products.length === 0 ? (
+          <p>Loading products...</p>
+        ) : (
+          products.map((item, idx) => (
+            <div className="product-card" key={idx}>
+              <img src={item.image} alt={item.name} />
+              <h3>{item.name}</h3>
+              <p>₹{item.price}</p>
+              <button onClick={() => openModal(item)}>Buy Now</button>
+            </div>
+          ))
+        )}
       </div>
 
       <BuyNowModal
@@ -82,4 +103,4 @@ const Marketplace = () => {
   );
 };
 
-export default Marketplace;
+export default Marketplace;

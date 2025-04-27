@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/adminProjectTracking.css";
 
 const AdminProjectTracking = () => {
@@ -10,33 +10,59 @@ const AdminProjectTracking = () => {
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState("success");
 
+  // Show success or error messages
   const showMessage = (text, type = "success") => {
     setMessage(text);
     setMessageType(type);
     setTimeout(() => setMessage(null), 3000);
   };
 
-  const handleAddProject = () => {
+  // Fetch projects from backend
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch("http://localhost:8080/projects");
+        const data = await res.json();
+        setProjects(data);
+      } catch (err) {
+        console.error("Failed to fetch projects:", err);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  // Handle Add Project
+  const handleAddProject = async () => {
     if (!title || !description || !timeline) {
       showMessage("Please fill in all fields", "error");
       return;
     }
 
-    const newProject = {
-      id: Date.now(),
-      title,
-      description,
-      status,
-      timeline,
-    };
+    try {
+      const res = await fetch("http://localhost:8080/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, description, status, timeline }),
+      });
 
-    setProjects([...projects, newProject]);
-    showMessage("Project added successfully!");
+      if (res.ok) {
+        const newProject = await res.json();
+        setProjects([...projects, newProject]);
+        showMessage("Project added successfully!");
 
-    setTitle("");
-    setDescription("");
-    setStatus("Planned");
-    setTimeline("");
+        // Reset form
+        setTitle("");
+        setDescription("");
+        setStatus("Planned");
+        setTimeline("");
+      } else {
+        showMessage("Failed to add project", "error");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      showMessage("Server error", "error");
+    }
   };
 
   return (
@@ -44,11 +70,7 @@ const AdminProjectTracking = () => {
       <h2>Government Project Tracking - Admin Panel</h2>
       <h3>Add New Project</h3>
 
-      {message && (
-        <div className={`message ${messageType}`}>
-          {message}
-        </div>
-      )}
+      {message && <div className={`message ${messageType}`}>{message}</div>}
 
       <div className="admin-form">
         <input
@@ -85,16 +107,20 @@ const AdminProjectTracking = () => {
           <p>No projects available.</p>
         ) : (
           <ul>
-            {projects.map((project) => (
-              <li key={project.id}>
-                <strong>{project.title}</strong> - {project.status}
-                <br />
-                <small>{project.timeline}</small>
-                <br />
-                <p>{project.description}</p>
-              </li>
-            ))}
-          </ul>
+          {projects.map((project) => (
+            <li key={project._id}>
+              <strong>{project.title}</strong>
+              <span className={`status-badge ${project.status.replace(/\s/g, "").toLowerCase()}`}>
+                {project.status}
+              </span>
+              <br />
+              <small>{project.timeline}</small>
+              <br />
+              <p>{project.description}</p>
+            </li>
+          ))}
+        </ul>
+        
         )}
       </div>
     </div>

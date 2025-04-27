@@ -43,13 +43,24 @@ router.post('/:id/react', async (req, res) => {
     const news = await News.findById(req.params.id);
     if (!news) return res.status(404).json({ message: 'News not found' });
 
-    if (reaction === 'like') news.likes++;
-    else if (reaction === 'dislike') news.dislikes++;
 
     await news.save();
     res.json({ message: 'Reaction updated' });
   } catch (error) {
     res.status(500).json({ message: 'Error updating reaction' });
+  }
+});
+
+// DELETE a news item
+router.delete('/:id', async (req, res) => {
+  try {
+    const result = await News.findByIdAndDelete(req.params.id);
+    if (!result) {
+      return res.status(404).json({ message: 'News not found' });
+    }
+    res.json({ message: 'News deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting news' });
   }
 });
 

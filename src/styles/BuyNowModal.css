@@ -48,3 +48,9 @@
   .modal-buttons button:hover {
     background-color: #00e6b8;
   }
+  .Select{
+    color:white;
+  }
+  .Select option{
+     color:black;
+  }

@@ -52,6 +52,7 @@ const NewsFeed = () => {
   });
 
   return (
+    <div className="news">
     <div className="news-feed">
       {alertMessage && <div className="news-alert">{alertMessage}</div>}
 
@@ -83,15 +84,11 @@ const NewsFeed = () => {
           ) : item.image ? (
             <img src={item.image} alt="media" className="news-image" />
           ) : null}
-
-          <div className="reactions">
-            <button onClick={() => handleReaction(item._id, "like")}>👍 {item.likes || 0}</button>
-            <button onClick={() => handleReaction(item._id, "dislike")}>👎 {item.dislikes || 0}</button>
-          </div>
         </div>
       ))}
 
       {filteredNews.length === 0 && <p>No news found for your search/date filter.</p>}
+    </div>
     </div>
   );
 };

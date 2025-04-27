@@ -1,8 +1,16 @@
 .news-feed {
-    padding: 20px;
-    max-width: 700px;
-    margin: auto;
-  }
+  padding: 85px;
+  max-width: 700px;
+  margin: auto;
+  
+}
+
+.news{
+  background-image: url('../assets/news.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Optional for parallax-like effect */
+}
   
   .news-alert {
     background: #ffeaa7;
@@ -22,8 +30,16 @@
   
   .news-filters input {
     flex: 1;
-    padding: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white; /* Make input solid and readable */
+    color: #2d3436;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+  
   
   .news-card {
     border: 1px solid #dcdde1;

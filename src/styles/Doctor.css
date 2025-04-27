@@ -1,0 +1,99 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.doctor{
+  background-image: url('../assets/H.jpg'); /* ✅ fixed path */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  padding:70px;
+}
+
+.doctor-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 100px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.doctor-page h2 {
+  font-size: 28px;
+  color: #2a3f54;
+  margin-bottom: 10px;
+}
+
+.doctor-page h3 {
+  font-size: 22px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #334e68;
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.appointments-table th,
+.appointments-table td {
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.appointments-table th {
+  background-color: #e8f0fe;
+  color: #333;
+  font-weight: bold;
+}
+
+.appointments-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  padding: 20px;
+}
+
+.video-btn,
+.complete-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.video-btn {
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.complete-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.video-btn:hover {
+  background-color: #0056b3;
+}
+
+.complete-btn:hover {
+  background-color: #218838;
+}
