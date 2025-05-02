@@ -19,15 +19,13 @@
   position: relative;
 }
 
-/* Optional: Remove comment to darken background
 .admin-project-container::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* dark overlay */
   z-index: 0;
 }
-*/
 
 .admin-project-container > * {
   position: relative;
@@ -45,34 +43,41 @@ h2, h3 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-  margin: 20px auto;
+  margin: 30px auto;
   padding: 10px;
   max-width: 1200px;
 }
 
-/* Updated Form inputs */
 .admin-form input,
 .admin-form textarea,
 .admin-form select {
-  padding: 10px;
+  padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 16px;
+  line-height: 1.5;
   width: 250px;
   max-width: 100%;
-  resize: vertical;
-
-  background-color: rgba(255, 255, 255, 0.6); /* more opaque */
+  background-color: rgba(255, 255, 255, 0.6);
   color: #000;
   backdrop-filter: blur(4px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: 0.3s ease;
+
+  /* ✅ Add the following line */
+  height: 50px;
 }
 
+
+/* Placeholder styling fix */
 .admin-form input::placeholder,
-.admin-form textarea::placeholder,
-.admin-form select {
+.admin-form textarea::placeholder {
   color: #333;
+  line-height: 1.5;
+}
+
+.admin-form select option {
+  color: #000;
 }
 
 .admin-form input:focus,
@@ -132,7 +137,7 @@ h2, h3 {
   text-align: left;
   box-shadow: 0 2px 8px rgba(0, 255, 224, 0.1);
   backdrop-filter: blur(2px);
-  margin-bottom: 20px; /* 🆕 Add this line for spacing between cards */
+  margin-bottom: 20px;
 }
 
 .project-list li strong {
@@ -188,19 +193,6 @@ h2, h3 {
     transform: translateY(0);
   }
 }
-/* Overlay to darken background image */
-.admin-project-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 0;
-}
-
-/* Form spacing below heading */
-.admin-form {
-  margin-top: 30px;
-}
 
 /* Status badge styles */
 .status-badge {
@@ -227,4 +219,3 @@ h2, h3 {
   background-color: #5cb85c;
   color: #fff;
 }
-

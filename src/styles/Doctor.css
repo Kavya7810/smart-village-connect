@@ -4,20 +4,24 @@ html, body, #root {
   padding: 0;
 }
 
-.doctor{
-  background-image: url('../assets/H.jpg'); /* ✅ fixed path */
+.doctor {
+  background-image: url('../assets/H.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  padding:70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 30px 15px;
 }
 
 .doctor-page {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 100px;
-  background-color: rgba(255, 255, 255, 0.85);
+  width: 100%;
+  max-width: 900px;
+  padding: 60px 40px;
+  background-color: rgba(255, 255, 255, 0.88);
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

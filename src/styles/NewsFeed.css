@@ -6,7 +6,7 @@
 }
 
 .news{
-  background-image: url('../assets/news.jpg'); 
+  background-image: url('../assets/NEWS.jpg'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Optional for parallax-like effect */

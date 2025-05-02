@@ -15,9 +15,10 @@ const Doctor = () => {
   }, []);
 
   const fetchAppointments = (docName) => {
-    axios.get("http://localhost:8080/appointments/book")
+    axios
+      .get("http://localhost:8080/appointments/book")
       .then((res) => {
-        const filtered = res.data.filter(app => app.doctor === docName);
+        const filtered = res.data.filter((app) => app.doctor === docName);
         setAppointments(filtered);
       })
       .catch((err) => {
@@ -34,7 +35,9 @@ const Doctor = () => {
 
   const handleComplete = async (appointmentId) => {
     try {
-      await axios.delete(`http://localhost:8080/appointments/book/${appointmentId}`);
+      await axios.delete(
+        `http://localhost:8080/appointments/book/${appointmentId}`
+      );
       toast.success("Appointment marked as completed!");
       // Refresh list
       fetchAppointments(doctorName);
@@ -46,47 +49,49 @@ const Doctor = () => {
 
   return (
     <div className="doctor">
-    <div className="doctor-page">
-      <h2>Welcome, {doctorName}</h2>
-      <h3>📋 Your Appointments</h3>
-      {appointments.length === 0 ? (
-        <p>No appointments booked yet.</p>
-      ) : (
-        <table className="appointments-table">
-          <thead>
-            <tr>
-              <th>Patient Name</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Video Call</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {appointments.map((app, index) => (
-              <tr key={index}>
-                <td>{app.name}</td>
-                <td>{app.date}</td>
-                <td>{app.time}</td>
-                <td>
-                  <button className="video-btn" onClick={startVideoCall}>
-                    <FaVideo /> Join Call
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="complete-btn"
-                    onClick={() => handleComplete(app._id)}
-                  >
-                    Completed
-                  </button>
-                </td>
+      <div className="doctor-page">
+        <h2>Welcome, {doctorName}</h2>
+        <h3>📋 Your Appointments</h3>
+        {appointments.length === 0 ? (
+          <p>No appointments booked yet.</p>
+        ) : (
+          <table className="appointments-table">
+            <thead>
+              <tr>
+                <th>Patient Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Email</th>
+                <th>Video Call</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+            </thead>
+            <tbody>
+              {appointments.map((app, index) => (
+                <tr key={index}>
+                  <td>{app.name}</td>
+                  <td>{app.date}</td>
+                  <td>{app.time}</td>
+                  <td>{app.email}</td>
+                  <td>
+                    <button className="video-btn" onClick={startVideoCall}>
+                      <FaVideo /> Join Call
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="complete-btn"
+                      onClick={() => handleComplete(app._id)}
+                    >
+                      Completed
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 };

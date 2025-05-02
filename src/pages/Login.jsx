@@ -10,6 +10,7 @@ const Login = () => {
   const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(null);
+  const [showPassword, setShowPassword] = useState(false); // <-- New State
   const navigate = useNavigate();
 
   const playSound = (soundFile) => {
@@ -35,11 +36,9 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
         localStorage.setItem("email", data.email);
-        console.log("Login response:", data.role);
 
         if (data.role === "Doctor") {
-          console.log(data.name);
-          localStorage.setItem("doctorName", `${data.name || "Smith"}`);
+          localStorage.setItem("doctorName", `${data.name || "Smith"}`);  {/* Fixed here */}
         }
 
         setMessage("✅ Login Successful!");
@@ -69,7 +68,7 @@ const Login = () => {
       <div className="auth-card">
         <h2>Login</h2>
         {message && (
-          <p className={`message ${isSuccess ? "success-message" : "error-message"}`}>
+          <p className={message ? (isSuccess ? "success-message" : "error-message") : ""}>
             {message}
           </p>
         )}
@@ -81,13 +80,35 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+
+          {/* Password with toggle */}
+          <div className="password-field" style={{ position: "relative" }}>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              style={{ paddingRight: "30px" }}
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+                fontSize: "18px",
+                color: "#fff",
+                userSelect: "none",
+              }}
+              title={showPassword ? "Hide Password" : "Show Password"}
+            >
+              👁️‍🗨️
+            </span>
+          </div>
+
           <select
             name="role"
             value={role}
@@ -102,6 +123,7 @@ const Login = () => {
             <option value="Villager">Villager</option>
             <option value="Admin">Admin</option>
           </select>
+
           <button type="submit">Login</button>
         </form>
         <p className="para">

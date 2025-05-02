@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Healthcare.css";
+
 import { FaBell, FaCalendarAlt, FaClock, FaUserMd } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import axios from "axios";
 
 const Healthcare = () => {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState(""); // NEW STATE
   const [doctor, setDoctor] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -24,19 +27,17 @@ const Healthcare = () => {
       setReminders((prevReminders) =>
         prevReminders.map((reminder) => {
           const remainingTime = getTimeRemaining(reminder.time);
-
           if (remainingTime === "Time up!") {
             showReminderNotification(reminder.name);
             showPopup(`It's time for ${reminder.name}!`);
           }
-
           return { ...reminder, remainingTime };
         })
       );
     }, 60000);
 
     return () => clearInterval(interval);
-  }, [reminders]);
+  }, []);
 
   const showPopup = (message) => {
     const popup = document.createElement("div");
@@ -54,8 +55,8 @@ const Healthcare = () => {
 
   const validateInputs = () => {
     let newErrors = {};
-
     if (!name.trim()) newErrors.name = "Name is required";
+    if (!email.trim()) newErrors.email = "Email is required";
     if (!doctor) newErrors.doctor = "Please select a doctor";
     if (!date) {
       newErrors.date = "Date is required";
@@ -64,7 +65,6 @@ const Healthcare = () => {
       selected.setHours(0, 0, 0, 0);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-
       if (selected < today) {
         newErrors.date = "Choose a future date or today";
       }
@@ -80,13 +80,15 @@ const Healthcare = () => {
       axios
         .post("http://localhost:8080/appointments/book", {
           name,
+          email,
           doctor,
           date,
           time,
         })
-        .then((res) => {
+        .then(() => {
           showPopup("Appointment booked Successfully");
           setName("");
+          setEmail("");
           setDoctor("");
           setDate("");
           setTime("");
@@ -116,15 +118,13 @@ const Healthcare = () => {
     const [hours, minutes] = reminderTime.split(":").map(Number);
     const reminderDateTime = new Date();
     reminderDateTime.setHours(hours, minutes, 0, 0);
-
     const timeDiff = reminderDateTime - now;
     if (timeDiff <= 0) return "Time up!";
-
     const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
     const minutesLeft = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-
-    if (hoursLeft > 0) return `${hoursLeft} hr ${minutesLeft} min to go`;
-    return `${minutesLeft} min to go`;
+    return hoursLeft > 0
+      ? `${hoursLeft} hr ${minutesLeft} min to go`
+      : `${minutesLeft} min to go`;
   };
 
   const showReminderNotification = (medicine) => {
@@ -150,6 +150,18 @@ const Healthcare = () => {
               className="input-field"
             />
             {errors.name && <span className="error">{errors.name}</span>}
+          </div>
+
+          <div className="input-group">
+            <input
+              type="email"
+              placeholder="Enter Your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input-field"
+            />
+            <MdEmail className="icon" />
+            {errors.email && <span className="error">{errors.email}</span>}
           </div>
 
           <div className="input-group">
@@ -239,3 +251,4 @@ const Healthcare = () => {
 };
 
 export default Healthcare;
+

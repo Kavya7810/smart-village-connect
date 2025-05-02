@@ -10,25 +10,22 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    role: "", // Initially empty
+    role: "",
   });
-  
-  
+
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Play sound function
   const playSound = (sound) => {
     const audio = new Audio(sound);
     audio.play();
   };
 
-  // Handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission (Send data to backend)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -49,7 +46,7 @@ const Register = () => {
         setTimeout(() => navigate("/login"), 2000);
 
         if (data.role === "Villager") {
-          console.log("hello"+data.name);
+          console.log("hello" + data.name);
           localStorage.setItem("villagerName", `${data.name || "Default name"}`);
         }
       } else {
@@ -86,25 +83,42 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        <select name="role" value={formData.role} onChange={handleChange} required>
-          <option value="" disabled>
-            Select Role
-          </option>
-          <option value="Doctor">Doctor</option>
-          <option value="Farmer">Farmer</option>
-          <option value="Villager">Villager</option>
-          <option value="Admin">Admin</option>
 
-        </select>
+          <div className="password-field" style={{ position: "relative" }}>
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              style={{ paddingRight: "30px" }}
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+                fontSize: "16px",
+              }}
+              title={showPassword ? "Hide Password" : "Show Password"}
+            >
+              👁️‍🗨️
+            </span>
+          </div>
 
+          <select name="role" value={formData.role} onChange={handleChange} required>
+            <option value="" disabled>
+              Select Role
+            </option>
+            <option value="Doctor">Doctor</option>
+            <option value="Farmer">Farmer</option>
+            <option value="Villager">Villager</option>
+            <option value="Admin">Admin</option>
+          </select>
 
           <button type="submit">Register</button>
         </form>

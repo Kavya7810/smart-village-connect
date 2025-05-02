@@ -3,7 +3,6 @@ import '../styles/AddProduct.css';
 
 const AddProduct = ({ onAdd }) => {
   const [product, setProduct] = useState({ name: "", price: "", image: "" });
-  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,14 +12,11 @@ const AddProduct = ({ onAdd }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!product.name || !product.price || !product.image) {
-      setMessage("❗Please fill all fields.");
       return;
     }
 
     onAdd(product);
     setProduct({ name: "", price: "", image: "" });
-    setMessage("✅ Product added successfully!");
-    setTimeout(() => setMessage(""), 3000);
   };
 
   return (
@@ -58,10 +54,9 @@ const AddProduct = ({ onAdd }) => {
         )}
 
         <button type="submit">Add Product</button>
-        {message && <p className="success-message">{message}</p>}
       </form>
     </div>
   );
 };
 
-export default AddProduct;
+export default AddProduct;

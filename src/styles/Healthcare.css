@@ -1,50 +1,71 @@
-/* General Container */
-.healthcare-wrapper{
-  height: calc(100vh - 70px);
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+input,
+select,
+textarea,
+button {
+  background: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+/* Autofill Fix */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+/* Wrapper */
+.healthcare-wrapper {
+  background: url('../assets/heart2.jpg') no-repeat center center/cover;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+/* Main Container */
 .healthcare-container {
   max-width: 500px;
+  width: 90%;
   margin: auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
   text-align: center;
   color: #fff;
-  padding: 30px;
 }
 
-/* Headings */
-h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-p {
-  font-size: 14px;
-  color: #ccc;
-}
-
-/* Appointment and Service Cards */
+/* Section Cards */
 .appointment-card,
 .service-card {
   background: #1e1e1e;
   padding: 20px;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
-/* Consultation Heading */
+/* Section Heading */
 .consultation-heading {
   font-size: 20px;
   font-weight: bold;
-  background-color: black;
-  color: white;
+  background: #000;
+  color: #fff;
   padding: 12px;
   border-radius: 8px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
 }
-
 .consultation-heading::before {
   content: "📅";
   margin-right: 8px;
@@ -52,70 +73,36 @@ p {
 
 /* Input Group */
 .input-group {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  text-align: left;
   width: 100%;
   margin-bottom: 20px;
+  position: relative;
 }
 
-/* Input Fields */
 .input-group input,
 .input-group select {
   width: 100%;
-  padding: 14px;
-  border-radius: 5px;
+  padding: 12px 14px;
   border: 2px solid transparent;
-  outline: none;
-  font-size: 16px;
+  border-radius: 5px;
   background: #fff;
   color: #000;
-  box-sizing: border-box;
-  margin-top: 5px;
-  margin-bottom: 15px !important;
+  font-size: 16px;
   transition: border 0.3s ease;
-  box-shadow: none !important;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 }
 
-/* Input Hover Effect */
 .input-group input:hover,
 .input-group select:hover {
-  border: 2px solid #00c3ff;
-  box-shadow: none !important;
+  border-color: #00c3ff;
 }
 
-/* Fixing different field heights */
-.input-group select {
-  height: 48px;
-}
-
-/* Fix misalignment in select doctor input */
-.input-group select.input-field {
-  padding-right: 40px;
-}
-
-/* Icon inside Input Fields */
+/* Icons */
 .input-group .icon {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
   color: #888;
-  box-shadow: none !important;
-  background: transparent !important;
-  pointer-events: none;
-}
-
-/* Error Message Styling */
-.error {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-  display: block;
 }
 
 /* Buttons */
@@ -127,148 +114,63 @@ p {
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
 }
 
-/* Book Appointment Button */
 .book-btn {
   background: #00c3ff;
   color: #000;
-  margin-top: 20px;
 }
-
 .book-btn:hover {
   background: #0097d6;
   transform: scale(1.05);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Medicine Reminder Button */
 .reminder-btn {
   background: #ffcc00;
   color: #000;
 }
-
 .reminder-btn:hover {
   background: #e6b800;
   transform: scale(1.05);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Video Consultation Button */
 .video-btn {
   background: #28a745;
   color: #fff;
 }
-
 .video-btn:hover {
   background: #218838;
   transform: scale(1.05);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Error Text */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 /* Reminder List */
 .reminder-list {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
   margin-top: 10px;
 }
-
 .reminder-item {
   background: #333;
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 10px;
   font-size: 14px;
+  color: #fff;
+  margin-bottom: 8px;
 }
 
-/* Proper gap between sections */
-.appointment-card {
-  margin-bottom: 30px;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .healthcare-container {
-    max-width: 90%;
-    padding: 15px;
-  }
-
-  .input-group input,
-  .input-group select {
-    font-size: 14px;
-  }
-
-  .book-btn,
-  .reminder-btn,
-  .video-btn {
-    font-size: 14px;
-    padding: 10px;
-  }
-}
-
-/* Background Wrapper */
-.healthcare-wrapper {
-  background-image: url('../assets/heart2.jpg'); /* Update path as needed */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 0;
-  position: relative;
-  z-index: 1;
-}
-
-/* Hard Reset for Default Input/Select/Textarea */
-input,
-select,
-textarea,
-button {
-  box-shadow: none !important;
-  background: none;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border-radius: 0;
-}
-
-/* Autofill Removal for Chrome/Safari */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important; /* or use your background color */
-  box-shadow: 0 0 0px 1000px #ffffff inset !important;
-  -webkit-text-fill-color: #000000 !important;
-  caret-color: #000000 !important;
-  border: 2px solid transparent !important;
-  transition: background-color 9999s ease-out, color 9999s ease-out;
-  animation: autofill-fix 0s forwards;
-}
-
-/* Force autofill to inherit styles again */
-@keyframes autofill-fix {
-  100% {
-    color: #000;
-    background: transparent;
-  }
-}
-
-/* Force toast to appear above navbar */
-.Toastify__toast-container {
-  z-index: 9999 !important;
-  position: fixed !important;
-  top: 0px !important;
-}
-
+/* Popup */
 .popup-message {
   position: fixed;
   top: 20px;
@@ -277,14 +179,31 @@ input:-webkit-autofill:active {
   color: #fff;
   padding: 12px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   z-index: 9999;
-  transition: right 0.3s ease, opacity 0.3s ease;
   opacity: 0;
+  transition: right 0.3s ease, opacity 0.3s ease;
 }
-
 .popup-message.visible {
   right: 20px;
   opacity: 1;
 }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .healthcare-container {
+    padding: 20px;
+  }
+  .input-group input,
+  .input-group select {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .book-btn,
+  .reminder-btn,
+  .video-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
 
